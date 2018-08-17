@@ -26,31 +26,7 @@ function onFormSubmit(e) {
   
 } 
 
-function first(){
-Logger.log("yo");
-}
-
-function second(){
-Logger.log("YO YO")
-}
-
-function call(){
- first();
- second();
-  third();
-  emailOutForm1();
-  emailOutForm2();
-}
-
-function testId(){
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var form1 = ss.getSheetByName("Form 1");
-  var form1Id = form1.getSheetId();  
-  
-  Logger.log(form1Id);
-
-}
-
+//not sure what this is (8/17/18ap)
 function doGet(){
  return HtmlService.createHtmlOutputFromFile('Service-HTML');
 }

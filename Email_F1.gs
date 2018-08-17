@@ -3,7 +3,7 @@ function emailOutForm1() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName('MaintReq');
   
-  //Copy Down Formula 
+  //test github branch
    var lastRow = sheet.getLastRow();
    var fillDown = sheet.getRange(lastRow,17,1);
    sheet.getRange("q2:x2").copyTo(fillDown);
@@ -57,29 +57,11 @@ function emailOutForm1() {
  
   MailApp.sendEmail(techEmail, subject, emailBody, optAdvancedArgs); //include email address from var at top without quotes, or manually enter a unique email address with quotes
   Logger.log(techPhone);
-  var testPhone = "4125138992"
   try{
     sendSMS(techPhone, emailBody);
     Logger.log("SMS Pass");
     }
   catch(err){
-      Logger.log("SMS Fail")
-      }
-}
-
-function test(){
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName('MaintReq');
-  var lastRow = sheet.getLastRow();
-  var techPhone = sheet.getRange(lastRow,19,1).getDisplayValue();//providers cell # for twillo text
-  var link = sheet.getRange(lastRow,24,1).getValue();
-  
-   Logger.log(link);
-}
-
-function shortenUrl() {
-    var url = UrlShortener.Url.insert({
-      longUrl: 'http://www.example.com'});
-    
-    Logger.log('Shortened URL is "%s".', url.id);
-  }
+    Logger.log("SMS Fail")
+    }
+ }

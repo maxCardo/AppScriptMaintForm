@@ -10,7 +10,7 @@ function emailOutForm2() {
    
    SpreadsheetApp.flush();
   
-  //Send Email (testing master control)
+  //Send Email (testing master control2)
 
   var resEmail = sheet.getRange(lastRow,13,1).getValue();
   var resPhone = sheet.getRange(lastRow,14,1).getValue()

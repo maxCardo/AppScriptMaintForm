@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+ 
+<style>div {margin: 10px;}</style>
+ 
+  </head>
+  <body>
+ 
+<h2>A FORM</h2>
+ 
+<form id="genericForm">
+ 
+<div class="form-group">
+ 
+<div>
+    <label for="distinguishedName">A Distinguished Name</label>
+    <input type="text" name="distinguishedName" class="form-control" id="distinguishedName" placeholder="A Fancy Name">
+</div>
+ 
+ 
+<div>
+    <label for="moreDetails">Details</label>    
+    <input type="text" name="moreDetails" id="moreDetails" placeholder="Additional Secrets">
+</div>
+ 
+</div>
+ 
+ <input type="submit" onclick="this.value='Magic ...'; google.script.run.withSuccessHandler(formSubmitted) .writeForm(this.parentNode); return false;">
+  
+</form>
+ 
+ 
+ 
+<div id="output"></div><!-- where the confirmation message goes -->
+ 
+<script>
+   function formSubmitted(status) {
+        document.getElementById('genericForm').style.display = 'none'; //matches your form name or whatever you want to disappear post-submission
+        document.getElementById('output').innerHTML = status; //displays in item with the 'output' id
+    }
+</script>    
+ 
+  </body>
+</html>

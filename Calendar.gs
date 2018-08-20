@@ -1,6 +1,6 @@
 function createCalService() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName('VenResp'); 
+  var sheet = ss.getSheetByName('VenResp');  
   var lastRow = sheet.getLastRow();
   var servIDRef = parseInt(sheet.getRange(lastRow,2).getValue());
   var returnRow = residentNotes(servIDRef);
@@ -13,13 +13,17 @@ function createCalService() {
   var stop = sheet.getRange(lastRow, 18).getValue();
   var calName = "Maintenance Schedule";
   var cal = CalendarApp.getCalendarById("rejv97enld2cfv55r9rpohooe4@group.calendar.google.com");
-  var appt = cal.createEvent(title, begin, stop);
+  var appt = cal.createEvent(title, begin, stop, {
+    description: "Notes to Resident: " + sheet.getRange(lastRow, 9).getValue() + "\n" +
+    "Notes to Contractor: " + workSummary + "\n" +
+    "Scheduling Notes: " + schedNotes
+  });
   //Add Guests
   appt.addGuest(sheet.getRange(lastRow,13).getValue());
   //----------------------------------------------- END DELETED SECTION
   
   
-  //Superior method of Calendar Add
+  /*Superior method of Calendar Add
   var event = {
     summary: "Service ID: " + servIDRef + " " + sheet.getRange(lastRow, 12).getValue(),
     location: sheet.getRange(lastRow, 19).getValue(),
@@ -37,6 +41,7 @@ function createCalService() {
     ],
   }
   event = Calendar.Events.insert(event, calName);
+*/
 }
       
 function residentNotes(servIDRef){

@@ -1,6 +1,3 @@
-
-//these are my changes
-
 function emailOutForm2() {
      
    var ss = SpreadsheetApp.getActiveSpreadsheet();

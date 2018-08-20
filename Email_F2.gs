@@ -6,7 +6,7 @@ function emailOutForm2() {
    //Copy Down Formula
    var lastRow = sheet.getLastRow();
    var fillDown = sheet.getRange(lastRow,11,1);
-   sheet.getRange("k2:p2").copyTo(fillDown);
+   sheet.getRange("k2:s2").copyTo(fillDown);
    
    SpreadsheetApp.flush();
   

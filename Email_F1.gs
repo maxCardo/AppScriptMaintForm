@@ -2,12 +2,10 @@ function emailOutForm1() {
   //Connect with backend 
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName('MaintReq');
-  
-  //test github branch
-   var lastRow = sheet.getLastRow();
-   var fillDown = sheet.getRange(lastRow,17,1);
-   sheet.getRange("q2:x2").copyTo(fillDown);
-   //SpreadsheetApp.flush();
+  var lastRow = sheet.getLastRow();
+  var fillDown = sheet.getRange(lastRow,17,1);
+  sheet.getRange("q2:x2").copyTo(fillDown);
+  //SpreadsheetApp.flush();
   
   //Send Email
   var resEmail = sheet.getRange(lastRow,2,1).getValue();

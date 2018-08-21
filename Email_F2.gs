@@ -1,5 +1,3 @@
-//this is master
-
 function emailOutForm2() {
      
    var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -9,7 +7,6 @@ function emailOutForm2() {
    var lastRow = sheet.getLastRow();
    var fillDown = sheet.getRange(lastRow,11,1);
    sheet.getRange("k2:s2").copyTo(fillDown);
-   
    SpreadsheetApp.flush();
   
   //Send Email

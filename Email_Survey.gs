@@ -1,31 +1,46 @@
 // shared variables
 var ss = SpreadsheetApp.getActiveSpreadsheet();
-var sheet = ss.getSheetByName('VenResp');
-var lastRow = sheet.getLastRow();
-var events = sheet.getRange(1,18,lastRow).getDisplayValues();
 var today = new Date();
 
-function captureEvents() {  
+function captureEvents() {
+  var sheet = ss.getSheetByName('VenResp');
+  var lastRow = sheet.getLastRow();
+  var events = sheet.getRange(1,18,lastRow).getDisplayValues();
+
   // remove after testing is compleated
   Logger.log('start script');
-  Logger.log(events);
+  Logger.log(today.setHours(0,0,0,0));
+  Logger.log(new Date (events[3]).setHours(0,0,0,0));
+  
+   if(new Date(events[e]).setHours(0,0,0,0) == today.setHours(0,0,0,0)){
+     Logger.log('true')
+   }else{
+     Logger.log('false')
+   }
+  
   
   for (var e = 0; e < events.length - 1; e++){
     if (new Date(events[e]).setHours(0,0,0,0) == today.setHours(0,0,0,0)){
        
        Logger.log(e+1);
-       //emailSurvey(e+1);
+       emailSurvey(e+1);
+       
+     //remove else after testing complete  
     }else {
       Logger.log('ran else')
+      emailSurvey(3)
     }
   }
 }
 
 function emailSurvey(rowNum) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  Logger.log('start emailSurvey')
   var sheet = ss.getSheetByName('VenResp');
   var indexV = parseInt(sheet.getRange(rowNum,2).getValue());
   var idRef = matchSheets(indexV);
+  
+  
+  Logger.log('back to email survy id ref -->', idRef);
   
   //Get Data Points
   var resEmail = sheet.getRange(rowNum,13).getValue();
@@ -42,13 +57,16 @@ function emailSurvey(rowNum) {
  }
       
 function matchSheets(indexV){
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  Logger.log('start matchSheet')
   var sheet = ss.getSheetByName('MaintReq');    
   var maintServIds = sheet.getRange(2,17,sheet.getLastRow()).getValues();
+  
   for(var i = 0; i<maintServIds.length; i++){
     Logger.log("MaintReq row: " + maintServIds[i] + " VenResp row: " + indexV);
-      if(maintServIds[i] == indexV)
-      return i+2;
+    if(maintServIds[i] == indexV){
+        Logger.log('found key match', i+2)
+        return i+2;
+    }else{Logger.log('no key match found')}
   }
   return -1;
 }

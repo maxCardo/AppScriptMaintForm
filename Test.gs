@@ -23,3 +23,26 @@ function shortenUrl() {
     Logger.log('Shortened URL is "%s".', url.id);
   }
 
+ //test triggers
+
+function trigTestFunc(){
+  
+   sendSMS('4124445181', 'testTrigger');
+   MailApp.sendEmail('scottCarrolmba@gmail.com', 'test trigger', 'this is a progmatic email testing the scripted trigger on test page of dev ticket 1 branch');
+   MailApp.sendEmail('adampoznanski@outlook.com', 'test trigger', 'this is a progmatic email testing the scripted trigger on test page of dev ticket 1 branch'); 
+}
+
+function trigTestTrig(){
+  // Trigger every 6 hours.
+  ScriptApp.newTrigger('trigTestFunc')
+      .timeBased()
+      .everyHours(1)
+      .create();
+
+  // Trigger every Monday at 09:00.
+  ScriptApp.newTrigger('trigTestFunc')
+      .timeBased()
+      .onWeekDay(ScriptApp.WeekDay.FRIDAY)
+      .atHour(19)
+      .create();
+}

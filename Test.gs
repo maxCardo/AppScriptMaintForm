@@ -7,14 +7,6 @@ function test(){
   
    Logger.log(link);
 }   
- 
-function calTest(){
-   // Creates an event for the moon landing and logs the ID.
-    var event = CalendarApp.getDefaultCalendar().createEvent('test calender event',
-    new Date('August 17, 2018 20:00:00 UTC'),
-    new Date('August 17, 2018 21:00:00 UTC')).addGuest('adampoznanski@outlook.com');
-    Logger.log('Event ID: ' + event.getId());
-}
 
 function shortenUrl() {
     var url = UrlShortener.Url.insert({
@@ -25,24 +17,16 @@ function shortenUrl() {
 
  //test triggers
 
-//function trigTestFunc(){
-  
-  // sendSMS('4124445181', 'testTrigger');
-  //MailApp.sendEmail('scottCarrolmba@gmail.com', 'test trigger', 'this is a progmatic email testing the scripted trigger on test page of dev ticket 1 branch');
-  //MailApp.sendEmail('adampoznanski@outlook.com', 'test trigger', 'this is a progmatic email testing the scripted trigger on test page of dev ticket 1 branch'); 
-//}
-
-//function trigTestTrig(){
-  // Trigger every 6 hours.
-  //ScriptApp.newTrigger('trigTestFunc')
-    //  .timeBased()
-    //  .everyHours(1)
-    //  .create();
-
-  // Trigger every Monday at 09:00.
-  //ScriptApp.newTrigger('trigTestFunc')
-    //  .timeBased()
-      //.onWeekDay(ScriptApp.WeekDay.FRIDAY)
-      //.atHour(19)
-      //.create();
-//}
+function dailyFollowupTrigger(){
+  // Trigger every day at 6PM
+  var days = [ScriptApp.WeekDay.MONDAY, ScriptApp.WeekDay.TUESDAY,
+               ScriptApp.WeekDay.WEDNESDAY, ScriptApp.WeekDay.THURSDAY,                                            
+               ScriptApp.WeekDay.FRIDAY];
+  for (var i=0; i<days.length; i++) {
+  ScriptApp.newTrigger('createCalService')
+      .timeBased()
+      .onWeekDay(days[i])
+      .atHour(18)
+      .create();
+  }
+}

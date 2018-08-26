@@ -40,6 +40,8 @@ function emailOutForm2() {
   var optAdvancedArgs = {htmlBody: htmlBody};
  
   MailApp.sendEmail(resEmail, subject, emailBody, optAdvancedArgs); //include email address from var at top without quotes, or manually enter a unique email address with quotes
+  sendSMS('4124445181', 'Service request accepted');
+    
 }
 
 

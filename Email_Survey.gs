@@ -7,7 +7,6 @@ function captureEvents() {
   
   for (var e = 0; e < events.length - 1; e++){
     if (new Date(events[e]).setHours(0,0,0,0) == today.setHours(0,0,0,0)){
-       Logger.log(e+1);
        emailSurvey(e+1); 
     }
   }

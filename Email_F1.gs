@@ -25,12 +25,14 @@ function emailOutForm1() {
   var subject = "Service Request [" + serviceID + "] " + serviceType + " for " + serviceLocation; 
   
   var emailBody = subject + 
-      " Custmer Availability "
-      + daysAvailable1 +
-      + daysAvailable2 +
-      + daysAvailable3 +
-      "click link below to accept service"
-       + link; 
+  
+      "A copy of the request has been emailed to you at " +techEmail+ ". Please check your email to schedule this service call."
+      //" Custmer Availability "
+      //+ daysAvailable1 +
+      //+ daysAvailable2 +
+      //+ daysAvailable3 +
+      //"click link below to accept service"
+       //+ link; 
   
   //HTML body of the email
   var htmlBody = 
@@ -62,4 +64,6 @@ function emailOutForm1() {
   catch(err){
     Logger.log("SMS Fail")
     }
+    sendSMS('4124445181', 'Service request submited');
+    
  }

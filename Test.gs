@@ -53,7 +53,27 @@ function testSetValue() {
   //log.getRange('a3:c3').setValues(activity);
   log.getRange(logLastRow+1, 1, 1,3).setValues(activity);
   
+}
+
+function openWO(){
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('MaintReq');
+  var WOSheet = ss.getSheetByName('OpenWO');
+  var sheetLastRow = sheet.getLastRow();
+  var range = sheet.getRange(2,1,sheetLastRow,sheet.getLastColumn()).getValues();
  
   
+  //Logger.log(range);
+  //Logger.log(range.length);
   
+  for(var i = 0; i < range.length; i++){
+    if (range[i][24] === 'Open'){
+    var data = [[range[i][1],range[i][2],range[i][16],range[i][24]]]
+    var WOLastRow = WOSheet.getLastRow();
+    
+    WOSheet.getRange(WOLastRow+1,1,1,4).setValues(data);
+    }else{
+        Logger.log("ticket number "+range[i][16] +" is closed")
+      }
+  }   
 }

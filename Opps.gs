@@ -1,5 +1,8 @@
 function onFormSubmit(e) {
   Logger.log("onFormSubmitRun");
+  
+  MailApp.sendEmail("adampoznanski@outlook.com","Maitenence masterScript run", "script run if no text recived check doc");
+  
   var sheet = e.range.getSheet();
   var sheetId = sheet.getSheetId();
    

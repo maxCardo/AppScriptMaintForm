@@ -12,6 +12,7 @@ function emailOutForm1() {
   var techEmail = sheet.getRange(lastRow,18,1).getValue(); //providers email address
   var techPhone = sheet.getRange(lastRow,19,1).getDisplayValue(); //providers cell # for twillo text
   var serviceLocation = sheet.getRange(lastRow,5,1).getValue();
+  var unitNum = sheet.getRange(lastRow,6,1).getValue();
   var tenantName = sheet.getRange(lastRow,3,1).getValue();
   var serviceType = sheet.getRange(lastRow,7,1).getValue();
   var requestSum = sheet.getRange(lastRow,8,1).getValue();
@@ -40,6 +41,7 @@ function emailOutForm1() {
 "<h3>A new service request has been added.</h3>" +
 
 "<p><b>Property Location:</b> " + serviceLocation +
+"<br/><b>Unit:</b> "+ unitNum +
 "<br/><b>Tenant:</b> "+ tenantName +
 "<br/><b>Type Of Service Requested:</b> " + serviceType +
 "<br/><b>Service Request Summary:</b> " + requestSum + 
@@ -64,6 +66,6 @@ function emailOutForm1() {
   catch(err){
     Logger.log("SMS Fail")
     }
-    sendSMS('4124445181', 'Service request submited');
-    
+    //sendSMS('4124445181', 'Service request submited');
+    MailApp.sendEmail("adampoznanski@outlook.com","Maitenence masterScript run", "new service request added");
  }

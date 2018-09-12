@@ -31,17 +31,19 @@ function emailOutForm2() {
   
     "<h4>Your service ticket for " + serviceType +" has accepted by " + techName +".</h4>"+
 
-      "<p>Sevice Date: " + timeWindow + "<p>"
+      "<p>Sevice Date: " + timeWindow +
       "<br>Notes From Service Tech: <br> " + serviceNotes +
-      "<p>" +
-      "<p> Thank You"; 
+      "</p>" +
+      "<p> Thank You </p>"+ 
+  
+      "<p>If you have an quastions regarding this service please contact us by text at (412)444-5181</p>";
     
    
   var optAdvancedArgs = {htmlBody: htmlBody};
  
   MailApp.sendEmail(resEmail, subject, emailBody, optAdvancedArgs); //include email address from var at top without quotes, or manually enter a unique email address with quotes
-  sendSMS('4124445181', 'Service request accepted');
-    
+  //sendSMS('4124445181', 'Service request accepted');
+  MailApp.sendEmail("adampoznanski@outlook.com","Maitenence masterScript run", "service request acccepted");  
 }
 
 
